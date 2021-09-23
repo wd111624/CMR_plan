@@ -1,5 +1,7 @@
 # CMR_plan
-This repository houses codes for automatic standard view planning for cardiac MR (CMR) imaging from a series of localizers via self-supervision by spatial relationship between views, in accordance with our MICCAI 2021 paper.
+This repository houses codes for automatic standard view planning for cardiac MR (CMR) imaging from a series of localizers via self-supervision by spatial relationship between views (see Fig. 1 below).
+
+![image](https://github.com/wd111624/CMR_plan/blob/main/concept.png)
 
 ## Introduction
 We provide an example data (case) located in the path "./data", which is used as both train and valiadtion (test) data for code demonstration purpose.
