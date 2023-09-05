@@ -3,8 +3,10 @@ This repository houses codes for automatic standard view planning for cardiac MR
 
 ![image](https://github.com/wd111624/CMR_plan/blob/main/concept.png)
 
+**Note:** we provide two versions of implementations, one using a vanilla UNet as backbone (main branch, corresponding to the MICCAI paper [1]) and the other using a stacked-hourglass backbone (SHG-Net branch, corresponding to the Med. Phys. paper [2]). Please be advised that you might need much more training data for the SHG-Net to work effectively than the UNet.
+
 ## Introduction
-We provide an example data (case) located in the path "./data", which is used as both train and valiadtion (test) data for code demonstration purpose.
+We provide an example data (case) located in the path "./data", which is used as both train and validation (test) data for code demonstration purpose.
 
 ## Step 1: Preprocess localizers
 The first step is to prepare the localizers based on which the standard views are prescribed, from raw DICOM files
@@ -40,7 +42,7 @@ The last step is to prescribe standard views by multi-view aggregation of the he
 ``` 
 python prescribe_std_views.py
 ```
-The prescribed planes are presented as ImagePositionPatient (IPP) and ImageNormalPatient (INP); please refer to the codes. For inituitive perception, we visualize the prescription results in the folder "prescribe_std_views" located in path "./data", where green color indicates the ground truth, red color indicates the automatic prescription, and yellow color indicates their overlap.
+The prescribed planes are presented as ImagePositionPatient (IPP) and ImageNormalPatient (INP); please refer to the codes. For intuitive perception, we visualize the prescription results in the folder "prescribe_std_views" located in path "./data", where green color indicates the ground truth, red color indicates the automatic prescription, and yellow color indicates their overlap.
 
 ## Acknowledgement
 Kindly cite us if you use our codes in your projects:
