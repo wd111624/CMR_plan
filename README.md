@@ -3,7 +3,7 @@ This repository houses codes for automatic standard view planning for cardiac MR
 
 ![image](https://github.com/wd111624/CMR_plan/blob/main/concept.png)
 
-**Note:** we provide two versions of implementations, one using a vanilla UNet as backbone (main branch, corresponding to the MICCAI paper [1]) and the other using a stacked-hourglass backbone (SHG-Net branch, corresponding to the Med. Phys. paper [2]). Please be advised that you might need much more training data for the SHG-Net to work effectively than the UNet.
+**Note:** we provide two versions of implementations, one using a vanilla UNet as backbone (main branch, corresponding to the MICCAI paper [1]) and the other using a stacked-hourglass backbone (SHG-Net branch, corresponding to the Med. Phys. paper [2]). Please be advised that you might need more training data for the SHG-Net to work effectively than for UNet.
 
 ## Introduction
 We provide an example data (case) located in the path "./data", which is used as both train and validation (test) data for code demonstration purpose.
@@ -47,4 +47,4 @@ The prescribed planes are presented as ImagePositionPatient (IPP) and ImageNorma
 ## Acknowledgement
 Kindly cite us if you use our codes in your projects:
 1. Wei D, Ma K, Zheng Y. Training automatic view planner for cardiac MR imaging via self-supervision by spatial relationship between views[C]//International Conference on Medical Image Computing and Computer-Assisted Intervention. Cham: Springer International Publishing, 2021: 526-536.
-2. Wei D, Huang Y, Lu D, et al. Automatic view plane prescription for cardiac magnetic resonance imaging via supervision by spatial relationship between views[J]. Medical physics, 2023, in print.
+2. Wei D, Huang Y, Lu D, et al. Automatic view plane prescription for cardiac magnetic resonance imaging via supervision by spatial relationship between views[J]. Medical Physics, 2023, in print.
