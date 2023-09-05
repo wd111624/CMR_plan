@@ -46,4 +46,5 @@ The prescribed planes are presented as ImagePositionPatient (IPP) and ImageNorma
 
 ## Acknowledgement
 Kindly cite us if you use our codes in your projects:
-- D. Wei, K. Ma, and Y. Zheng, "Training Automatic View Planner for Cardiac MR Imaging via Self-Supervision by Spatial Relationship between Views," accepted by  *International Conference on Medical Image Computing and Computer-Assisted Intervention* (MICCAI 2021).
+1. Wei D, Ma K, Zheng Y. Training automatic view planner for cardiac MR imaging via self-supervision by spatial relationship between views[C]//International Conference on Medical Image Computing and Computer-Assisted Intervention. Cham: Springer International Publishing, 2021: 526-536.
+2. Wei D, Huang Y, Lu D, et al. Automatic view plane prescription for cardiac magnetic resonance imaging via supervision by spatial relationship between views[J]. Medical physics, 2023, in print.
