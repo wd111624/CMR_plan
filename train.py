@@ -11,6 +11,7 @@ import numpy as np
 from dataset.cmr_slice_dataset import CMRSliceDataset
 from dataset.cmr_stack_dataset import CMRStackDataset
 from network.UNet import UNet
+from network.HGNet import HGNet, HGMSELoss
 
 SAVE_FREQ = 5
 
@@ -31,7 +32,8 @@ def arg_parser():
                         help='type of ground truth label to use, i.e., sigma of the Gaussian (default: HT0.5)')
     parser.add_argument('--split', default=r'prep_data/dummy_split.npz', type=str,
                         help='npz file containing split of train and test data')
-    parser.add_argument('--net', default='UNet', type=str, help='network architecture; options: UNet')
+    parser.add_argument('--net', default='HGNet', type=str, help='network architecture; options: UNet/HGNet')
+    parser.add_argument('--n_stacks', default=2, type=int, help='number of stacks for hourglass network')
     parser.add_argument('--optim', default='Adam', type=str, help='optimizer to use (default: Adam)')
     parser.add_argument('--lr', default=0.001, type=float, metavar='LR', help='learning rate (default: 0.001)')
     parser.add_argument('--schedule', default='plateau', type=str,
@@ -77,7 +79,8 @@ def main(args):
         net = UNet(n_classes=n_cls).cuda()
         criterion = torch.nn.MSELoss().cuda()  # loss
     else:
-        raise ValueError("Unknown network structure specified!")
+        net = HGNet(n_stacks=args.n_stacks, n_classes=n_cls).cuda()
+        criterion = HGMSELoss(n_stacks=args.n_stacks).cuda()  # loss
     net = torch.nn.DataParallel(net)
     cudnn.benchmark = True
 

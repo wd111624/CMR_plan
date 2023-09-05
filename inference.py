@@ -9,6 +9,7 @@ import cv2
 from dataset.cmr_slice_dataset import CMRSliceDataset
 from dataset.cmr_stack_dataset import CMRStackDataset
 from network.UNet import UNet
+from network.HGNet import HGNet
 from utils.util import arr_to_8bit_img
 
 
@@ -40,7 +41,8 @@ def arg_parser():
     parser.add_argument('--split', default=r'prep_data/dummy_split.npz', type=str,
                         help='npz file containing split of train and test data')
     parser.add_argument('--part', default='test', type=str, help='if predict train or test (default) data')
-    parser.add_argument('--net', default='UNet', type=str, help='network architecture; options: UNet')
+    parser.add_argument('--net', default='HGNet', type=str, help='network architecture; options: UNet/HGNet')
+    parser.add_argument('--n_stacks', default=2, type=int, help='number of stacks for hourglass network')
     parser.add_argument('--prev', default='', type=str, help='directory to previously trained models (default: empty)')
     return parser
 
@@ -68,7 +70,7 @@ def main(args):
     if args.net == 'UNet':
         net = UNet(n_classes=n_cls).cuda()
     else:
-        raise ValueError("Unknown network structure specified!")
+        net = HGNet(n_stacks=args.n_stacks, n_classes=n_cls).cuda()
     net = torch.nn.DataParallel(net)
     cudnn.benchmark = True
 
@@ -90,6 +92,8 @@ def main(args):
                 paths = [path[0] for path in paths]
 
             outputs, _ = net(inputs)
+            if args.net == 'HGNet':
+                outputs = outputs[..., -1]
             loss = criterion(outputs, labels)
 
             save_results(paths, inputs.cpu().numpy(), outputs.cpu().numpy(), loss.cpu().data.numpy(),
